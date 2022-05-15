@@ -1,25 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from 'react';
+import { HashRouter } from 'react-router-dom';
+import { positions, Provider } from 'react-alert';
+import ReactAlertTemplate from './components/ReactAlertTemplate';
+import RootWrapper from './wrappers/RootWrapper';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter>
+      <Suspense fallback={null}>
+        <Provider template={ReactAlertTemplate} timeout={5000} position={positions.TOP_CENTER}>
+          <RootWrapper />
+        </Provider>
+      </Suspense>
+    </HashRouter>
   );
 }
 
