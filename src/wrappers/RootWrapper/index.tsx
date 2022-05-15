@@ -8,7 +8,7 @@ export default function RootWrapper() {
       <Routes>
         <Route path="/login" element={<div>Login</div>} />
         <Route path="/splash" element={<Splash />} />
-        <Route path="/*" element={<Splash />} />
+        <Route path="/*" element={<div>Home</div>} />
       </Routes>
     </div>
   );
