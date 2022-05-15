@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import './utils/i18n';
 import { HashRouter } from 'react-router-dom';
 import { positions, Provider } from 'react-alert';
 import ReactAlertTemplate from './components/ReactAlertTemplate';

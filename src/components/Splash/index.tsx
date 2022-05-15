@@ -2,15 +2,20 @@ import Spin from 'assets/svg/Spin';
 import SplashLogo from 'assets/svg/SplashLogo';
 import CreditCard from 'components/CreditCard';
 import CreditCardSkeleton from 'components/CreditCard/CreditCardSkeleton';
-import React, { AllHTMLAttributes, FC } from 'react';
+import React, { AllHTMLAttributes, FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { AppState } from 'state';
-import { useUpdateSync } from 'state/global/hooks';
+// import { useUpdateSync } from 'state/global/hooks';
 
 interface IProps extends AllHTMLAttributes<HTMLDivElement> {}
 const Splash: FC<IProps> = (props) => {
-  const { isSyncing } = useSelector((state: AppState) => state.global);
-  const updateSync = useUpdateSync();
+  const { isSync } = useSelector((state: AppState) => state.global);
+  const [isSyncing, setIsSyncing] = useState<boolean>(isSync);
+  const { t } = useTranslation();
+
+  // const updateSync = useUpdateSync();
+
   return (
     <div className="h-full bg-gray-100 select-none relative">
       {/* Background */}
@@ -21,22 +26,22 @@ const Splash: FC<IProps> = (props) => {
         {/* Top */}
         <div className="shadow absolute -top-20 -left-14 w-84 h-50 bg-white rounded-3xl blur-[1px] -rotate-[25deg]"></div>
         {/* Cards */}
-        <div className="w-full absolute -top-5 -right-36 -rotate-[25deg] h-104">
+        <div className="w-full absolute -top-5 -right-36 -rotate-[25deg] h-104 xl:-right-160">
           <div className="absolute flex justify-end bottom-0 right-0">
             <div className="blur-[2px] shadow w-[405px] h-[250px] bg-[#FFD05C] rounded-[150px] flex justify-center items-center">
               <div className="w-[285px] h-[130px] bg-gray-100 rounded-[150px]"></div>
             </div>
-            <div className="w-20 md:w-36"></div>
-            <div className="w-8 md:w-16"></div>
+            <div className="w-20 md:w-36 xl:w-140"></div>
+            <div className="w-8 md:w-16 xl:w-44"></div>
           </div>
           <div className="relative h-75 w-full top-0 right-0">
             <div className="absolute bottom-0 right-0 flex justify-end">
               <CreditCardSkeleton className="bg-white blur-[1px] opacity-60" />
-              <div className="w-25 md:w-50"></div>
+              <div className="w-25 md:w-50 xl:w-160"></div>
             </div>
             <div className="absolute top-0 right-0 flex justify-end">
               <CreditCard />
-              <div className="md:w-25"></div>
+              <div className="md:w-25 xl:w-140"></div>
             </div>
           </div>
         </div>
@@ -49,13 +54,13 @@ const Splash: FC<IProps> = (props) => {
           </div> */}
           <div>
             <SplashLogo />
-            <div onClick={() => updateSync(!isSyncing)} className="text-lg pt-4 text-center">
+            <div onClick={() => setIsSyncing(!isSyncing)} className="text-lg pt-4 text-center">
               Simple flow of savings!
             </div>
             <div className="h-8 w-full pt-1">
               {isSyncing && (
                 <div className="text-sm h-full animate-pulse rounded-md flex items-center justify-center">
-                  <Spin /> <div>Synching data...</div>
+                  <Spin /> <div>{t('splash.syncing')}</div>
                 </div>
               )}
             </div>
