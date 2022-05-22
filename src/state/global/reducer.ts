@@ -1,17 +1,18 @@
 import { updateSync } from './actions';
 import { createReducer } from '@reduxjs/toolkit';
+import { SyncStatus } from 'types/enum';
 
 export interface IGlobalState {
   /**Require sync data at first time visit page */
-  isSync: boolean;
+  sycStatus: SyncStatus;
 }
 
 export const initialState: IGlobalState = {
-  isSync: false,
+  sycStatus: SyncStatus.NOT_SYNC,
 };
 
 export default createReducer(initialState, (builder) =>
   builder.addCase(updateSync, (state, { payload }) => {
-    state.isSync = payload;
+    state.sycStatus = payload;
   })
 );

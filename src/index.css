@@ -19,3 +19,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* For slick slide */
+.slick-list, .slick-track, .slick-slide, .slick-slide > div {
+  height: 100%;
+}
+
+.slick-dot > li > button {
+  background-color: #8F57FF;
+}
+.slick-dots li button:before {
+  color: #8F57FF;
+}
+.slick-dots li.slick-active button:before {
+  color: #8F57FF;
+  font-size: 1rem;
+}

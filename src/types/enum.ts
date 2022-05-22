@@ -7,3 +7,25 @@ export enum Language {
   VIETNAMESE = 'vn',
   ENGLISH = 'en',
 }
+export enum CommonButtonType {
+  PRIMARY = 'PRIMARY',
+  SECONDARY = 'SECONDARY',
+}
+
+export enum CommonInputType {}
+
+export enum SyncStatus {
+  NOT_SYNC = 0,
+  COMPLETED = 1,
+  INPROGRESS = 2,
+}
+
+export enum RoutePath {
+  ROOT = '/',
+  AUTH = '/auth',
+  GUEST = '/guest',
+  LOGIN = '/login',
+  SIGN_UP = '/sign-up',
+  FORGOT_PASSWORD = '/forgot-password',
+  SPLASH = '/splash',
+}

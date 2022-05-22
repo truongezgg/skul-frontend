@@ -1,11 +1,18 @@
+import { changeLanguage } from 'i18next';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from 'state';
 import { Language } from 'types/enum';
 import { updateLanguageSetting } from './actions';
 
-export function updateLanguage(): (language: Language) => void {
+export function useUpdateLanguage(): (language: Language) => Promise<void> {
   const dispatch = useDispatch<AppDispatch>();
 
-  return useCallback((language: Language) => dispatch(updateLanguageSetting(language)), [dispatch]);
+  return useCallback(
+    async (language: Language) => {
+      await changeLanguage(language);
+      dispatch(updateLanguageSetting(language));
+    },
+    [dispatch]
+  );
 }
