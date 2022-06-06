@@ -35,9 +35,9 @@ const SignUpPage: FC<IProps> = (props) => {
         </div>
         <div className="py-2 flex justify-start items-center text-sm font-semibold">
           <div className="m-2">
-            <CommonInput id="1754956059-checkbox-term-policy" type="checkbox" />
+            <CommonInput type="checkbox" />
           </div>
-          <label htmlFor="1754956059-checkbox-term-policy">
+          <label htmlFor="checkbox-term-policy">
             <span className="px-1">{t('signUp.lblTermPolicy1')}</span>
             <Link to={RoutePath.ROOT} className="text-violet-500">
               {t('signUp.lblTermPolicy2')}

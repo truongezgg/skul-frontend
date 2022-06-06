@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Splash from 'components/Splash';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AppState } from 'state';
 import { RoutePath, SyncStatus } from 'types/enum';
@@ -40,7 +40,6 @@ export default function RootWrapper() {
           <Splash syncStatus={sycStatus} />
         </div>
       )} */}
-
       <Routes>
         <Route path={RoutePath.AUTH} element={<AuthPage />} />
         <Route path={RoutePath.FORGOT_PASSWORD} element={<ForgotPasswordPage />} />

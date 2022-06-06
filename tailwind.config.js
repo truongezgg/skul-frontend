@@ -10,6 +10,8 @@ module.exports = {
       },
       spacing: {
         18: '4.5rem',
+        22: '5.5rem',
+        22.5: '5.625rem',
         25: '6.25rem',
         50: '12.5rem',
         75: '18.75rem',
@@ -28,6 +30,30 @@ module.exports = {
         160: '40rem',
         180: '45rem',
         200: '50rem',
+      },
+      keyframes: {
+        bounceX: {
+          '0%': {
+            transform: 'translateX(0)',
+            'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
+          },
+          '25%': {
+            transform: 'translateX(-15%)',
+            'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
+          },
+          '50%': {
+            transform: 'translateX(0)',
+            'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)',
+          },
+          '75%': {
+            transform: 'translateX(15%)',
+            'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
+          },
+          '100%': {
+            transform: 'translateX(0)',
+            'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
+          },
+        },
       },
     },
   },

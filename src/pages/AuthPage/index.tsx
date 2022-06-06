@@ -92,7 +92,7 @@ const AuthPage = () => {
               </div>
             </div>
             <div className="py-1.5">
-              <Link to={RoutePath.GUEST}>
+              <Link to={RoutePath.SETUP_PIN}>
                 <CommonButton type={CommonButtonType.SECONDARY}>{t('auth.lblGuest')}</CommonButton>
               </Link>
             </div>

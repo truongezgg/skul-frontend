@@ -21,11 +21,12 @@ export enum SyncStatus {
 }
 
 export enum RoutePath {
-  ROOT = '/',
+  ROOT = '/*',
   AUTH = '/auth',
   GUEST = '/guest',
   LOGIN = '/login',
   SIGN_UP = '/sign-up',
   FORGOT_PASSWORD = '/forgot-password',
   SPLASH = '/splash',
+  SETUP_PIN = '/pin',
 }
