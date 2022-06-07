@@ -45,4 +45,9 @@ export const TRANSLATIONS_VI = {
     lblTermPolicy1: 'Bằng cách đăng ký, bạn đồng ý với',
     lblTermPolicy2: 'Điều khoản Dịch vụ và Chính sách Bảo mật',
   },
+  pin: {
+    lblTitle: 'Nhập mã PIN',
+    lblTypeTitle: 'Hãy thiết lập mã PIN của bạn',
+    lblReTypeTitle: 'OK. Hãy nhập lại mã một lần nữa',
+  },
 };

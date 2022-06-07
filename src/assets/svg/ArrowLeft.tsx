@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { AllHTMLAttributes, FC } from 'react';
 
 const ArrowLeft: FC = () => {
   return (

@@ -44,4 +44,9 @@ export const TRANSLATIONS_EN = {
     lblTermPolicy1: 'By signing up, you agree to the',
     lblTermPolicy2: 'Terms of Service and Privacy Policy',
   },
+  pin: {
+    lblTitle: 'Type your PIN',
+    lblTypeTitle: 'Let setup your PIN',
+    lblReTypeTitle: 'Ok. Re type your PIN again.',
+  },
 };

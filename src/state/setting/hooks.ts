@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from 'state';
 import { Language } from 'types/enum';
-import { updateLanguageSetting } from './actions';
+import { updateLanguageSetting, updatePin } from './actions';
 
 export function useUpdateLanguage(): (language: Language) => Promise<void> {
   const dispatch = useDispatch<AppDispatch>();
@@ -15,4 +15,10 @@ export function useUpdateLanguage(): (language: Language) => Promise<void> {
     },
     [dispatch]
   );
+}
+
+export function useUpdatePin(): (pin: string) => void {
+  const dispatch = useDispatch<AppDispatch>();
+
+  return useCallback((pin: string) => dispatch(updatePin(pin)), [dispatch]);
 }

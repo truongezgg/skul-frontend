@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 import AuthPage from 'pages/AuthPage';
+import SetupAccountPage from 'pages/SetupAccountPage';
 import SetupPinPage from 'pages/SetupPinPage';
 import React, { useEffect } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
@@ -19,6 +20,7 @@ const AuthWrapper = () => {
     <>
       <Routes>
         <Route path={RoutePath.SETUP_PIN} element={<SetupPinPage />} />
+        <Route path={RoutePath.SETUP_ACCOUNT} element={<SetupAccountPage />} />
         <Route path={'/*'} element={<AuthPage />} />
       </Routes>
     </>

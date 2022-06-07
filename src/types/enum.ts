@@ -29,4 +29,5 @@ export enum RoutePath {
   FORGOT_PASSWORD = '/forgot-password',
   SPLASH = '/splash',
   SETUP_PIN = '/pin',
+  SETUP_ACCOUNT = '/account/:step',
 }

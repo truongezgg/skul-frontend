@@ -11,3 +11,8 @@ export const cutLongString = (str: string, maxLength: number) => {
 export const formatCurrency = (number: number, separate = ',') => {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separate);
 };
+
+export const changeThemeColor = (color: string) => {
+  const metaThemeColor = document.querySelector('meta[name=theme-color]') as Element;
+  metaThemeColor.setAttribute('content', color);
+};
