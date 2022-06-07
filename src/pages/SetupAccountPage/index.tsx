@@ -16,9 +16,9 @@ const SetupAccountPage: FC<IProps> = (props) => {
     <div className="h-full flex content-between flex-wrap px-4 pb-10">
       <div className="font-medium">
         <div className="pt-20 pb-10">
-          <div className="text-4xl">Let’s setup your account!</div>
+          <div className="text-5xl">Let’s setup your account!</div>
         </div>
-        <div className="text-sm">Account can be your bank, credit card or your wallet.</div>
+        <div className="text-xl">Account can be your bank, credit card or your wallet.</div>
       </div>
       <CommonButton type={CommonButtonType.PRIMARY}>Let's go</CommonButton>
     </div>
