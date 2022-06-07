@@ -1,4 +1,5 @@
 import BigArrow from 'assets/svg/BigArrow';
+import CountDown from 'components/CountDown';
 import moment from 'moment';
 import React, { FC, AllHTMLAttributes, useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -45,6 +46,11 @@ const SetupPinPage: FC<IProps> = (props) => {
   }, []);
 
   useEffect(() => {
+    if (nextTimeCanTry && nextTimeCanTry > Date.now()) {
+    }
+  }, [nextTimeCanTry]);
+
+  useEffect(() => {
     if (!pin) setStep(STEP.ONE);
 
     if (pin) setStep(STEP.COMMON);
@@ -77,7 +83,7 @@ const SetupPinPage: FC<IProps> = (props) => {
             const tryCount = tryTime + 1;
             setTryTime(tryCount);
             if (tryCount >= MAX_WRONG_TIME) {
-              setNextTimeCanTry(Date.now() + 1000 * 60 * 5);
+              setNextTimeCanTry(Date.now() + 1000 * 60 * 1);
             }
 
             onWrongPIN();
@@ -131,6 +137,11 @@ const SetupPinPage: FC<IProps> = (props) => {
     setTempPin([]);
   };
 
+  const onCountDownFinished = () => {
+    setNextTimeCanTry(undefined);
+    setTryTime(0);
+  };
+
   const onWrongPIN = () => {
     if (titleRef) {
       const isContainer = titleRef.current?.classList.contains('animate-[bounceX_0.250s_ease]');
@@ -167,7 +178,7 @@ const SetupPinPage: FC<IProps> = (props) => {
     <div className="h-full min-h-[30rem] w-full bg-[#7F3DFF] flex flex-col">
       <div className="h-full flex justify-center items-center">
         <div className="text-white">
-          <div ref={titleRef} className={'h-16 text-lg flex items-start justify-center'}>
+          <div ref={titleRef} className="h-16 text-lg flex items-start justify-center font-medium">
             {TITLE[step]}
           </div>
 
@@ -184,7 +195,7 @@ const SetupPinPage: FC<IProps> = (props) => {
             {nextTimeCanTry && (
               <div>
                 You type wrong too many time. Please try again after{' '}
-                {moment(nextTimeCanTry).format('HH:mm')}
+                <CountDown endTime={nextTimeCanTry} onFinished={onCountDownFinished} />
               </div>
             )}
           </div>
