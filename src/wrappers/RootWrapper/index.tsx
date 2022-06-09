@@ -34,7 +34,7 @@ export default function RootWrapper() {
   }
 
   return (
-    <div className="h-full relative mx-auto">
+    <div className="h-full relative  max-w-5xl mx-auto">
       {/* {sycStatus !== SyncStatus.COMPLETED && (
         <div className="fixed top-0 left-0 w-full h-full z-50">
           <Splash syncStatus={sycStatus} />

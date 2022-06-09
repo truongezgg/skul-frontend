@@ -1,7 +1,7 @@
 import CommonButton from 'components/CommonButton';
 import React, { FC, AllHTMLAttributes } from 'react';
-import { useParams } from 'react-router-dom';
-import { CommonButtonType } from 'types/enum';
+import { Link, useParams } from 'react-router-dom';
+import { CommonButtonType, RoutePath } from 'types/enum';
 
 interface IProps extends AllHTMLAttributes<HTMLDivElement> {}
 
@@ -20,7 +20,9 @@ const SetupAccountPage: FC<IProps> = (props) => {
         </div>
         <div className="text-xl">Account can be your bank, credit card or your wallet.</div>
       </div>
-      <CommonButton type={CommonButtonType.PRIMARY}>Let's go</CommonButton>
+      <Link className="w-full" to={RoutePath.ADD_ACCOUNT}>
+        <CommonButton type={CommonButtonType.PRIMARY}>Let's go</CommonButton>
+      </Link>
     </div>
   );
 };

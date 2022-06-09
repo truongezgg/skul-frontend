@@ -24,7 +24,7 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="h-full max-w-5xl mx-auto">
+    <div className="h-full">
       {/* Container */}
       <div className="h-full px-4 flex flex-col">
         {/* Slider */}

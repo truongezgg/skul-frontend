@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import AddAccountPage from 'pages/AddAccountPage';
 import AuthPage from 'pages/AuthPage';
 import SetupAccountPage from 'pages/SetupAccountPage';
 import SetupPinPage from 'pages/SetupPinPage';
@@ -21,6 +22,7 @@ const AuthWrapper = () => {
       <Routes>
         <Route path={RoutePath.SETUP_PIN} element={<SetupPinPage />} />
         <Route path={RoutePath.SETUP_ACCOUNT} element={<SetupAccountPage />} />
+        <Route path={RoutePath.ADD_ACCOUNT} element={<AddAccountPage />} />
         <Route path={'/*'} element={<AuthPage />} />
       </Routes>
     </>

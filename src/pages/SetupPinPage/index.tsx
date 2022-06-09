@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AppState } from 'state';
-import { useUpdatePin } from 'state/setting/hooks';
+import { useUpdateBlockEnterPin, useUpdatePin } from 'state/setting/hooks';
 import { RoutePath } from 'types/enum';
 import { changeThemeColor } from 'utils';
 
@@ -31,11 +31,11 @@ const SetupPinPage: FC<IProps> = (props) => {
   const [tempPins, setTempPin] = useState<number[]>([]);
   const [step, setStep] = useState<number>(STEP.COMMON);
   const [tryTime, setTryTime] = useState<number>(0);
-  const [nextTimeCanTry, setNextTimeCanTry] = useState<number>();
   const titleRef = useRef<HTMLDivElement>(null);
-  const { pin } = useSelector((state: AppState) => state.setting);
+  const { pin, blockEnterPinTo } = useSelector((state: AppState) => state.setting);
   const updatePin = useUpdatePin();
   const navigate = useNavigate();
+  const updateBlockEnterPinTo = useUpdateBlockEnterPin();
 
   useEffect(() => {
     changeThemeColor('#7F3DFF');
@@ -46,9 +46,9 @@ const SetupPinPage: FC<IProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    if (nextTimeCanTry && nextTimeCanTry > Date.now()) {
+    if (blockEnterPinTo && blockEnterPinTo > Date.now()) {
     }
-  }, [nextTimeCanTry]);
+  }, [blockEnterPinTo]);
 
   useEffect(() => {
     if (!pin) setStep(STEP.ONE);
@@ -59,7 +59,7 @@ const SetupPinPage: FC<IProps> = (props) => {
   const onPressNumber = (num: number) => {
     const current = Date.now();
 
-    if (nextTimeCanTry && nextTimeCanTry > current) {
+    if (blockEnterPinTo && blockEnterPinTo > current) {
       return;
     }
 
@@ -83,7 +83,7 @@ const SetupPinPage: FC<IProps> = (props) => {
             const tryCount = tryTime + 1;
             setTryTime(tryCount);
             if (tryCount >= MAX_WRONG_TIME) {
-              setNextTimeCanTry(Date.now() + 1000 * 60 * 5);
+              updateBlockEnterPinTo(Date.now() + 1000 * 60 * 5);
             }
 
             onWrongPIN();
@@ -138,7 +138,7 @@ const SetupPinPage: FC<IProps> = (props) => {
   };
 
   const onCountDownFinished = () => {
-    setNextTimeCanTry(undefined);
+    updateBlockEnterPinTo(undefined);
     setTryTime(0);
   };
 
@@ -192,10 +192,10 @@ const SetupPinPage: FC<IProps> = (props) => {
             </div>
           </div>
           <div className="h-10 px-4 text-xs flex items-end justify-center">
-            {nextTimeCanTry && (
+            {blockEnterPinTo && (
               <div>
                 You type wrong too many time. Please try again after{' '}
-                <CountDown endTime={nextTimeCanTry} onFinished={onCountDownFinished} />
+                <CountDown endTime={blockEnterPinTo} onFinished={onCountDownFinished} />
               </div>
             )}
           </div>
