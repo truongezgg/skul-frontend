@@ -49,5 +49,12 @@ export const TRANSLATIONS_VI = {
     lblTitle: 'Nhập mã PIN',
     lblTypeTitle: 'Hãy thiết lập mã PIN của bạn',
     lblReTypeTitle: 'OK. Hãy nhập lại mã một lần nữa',
+    lblWrongTooManyTime: 'Bạn đã nhập sai quá nhiều lần. Thử lại sau',
+    lblClear: 'Xóa',
   },
+  addAccount: {
+    lblTitle: 'Tạo tài khoản mới',
+  },
+  'No, cancel': 'Hủy bỏ',
+  "Yes, I'm sure": 'Đồng ý',
 };

@@ -48,5 +48,12 @@ export const TRANSLATIONS_EN = {
     lblTitle: 'Type your PIN',
     lblTypeTitle: 'Let setup your PIN',
     lblReTypeTitle: 'Ok. Re type your PIN again.',
+    lblWrongTooManyTime: 'You type wrong too many time. Please try again after',
+    lblClear: 'Clear',
   },
+  addAccount: {
+    lblTitle: 'Add new account',
+  },
+  'No, cancel': 'No, cancel',
+  "Yes, I'm sure": "Yes, I'm sure",
 };

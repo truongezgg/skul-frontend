@@ -1,6 +1,5 @@
 import BigArrow from 'assets/svg/BigArrow';
 import CountDown from 'components/CountDown';
-import moment from 'moment';
 import React, { FC, AllHTMLAttributes, useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -38,10 +37,11 @@ const SetupPinPage: FC<IProps> = (props) => {
   const updateBlockEnterPinTo = useUpdateBlockEnterPin();
 
   useEffect(() => {
+    const current = titleRef.current;
     changeThemeColor('#7F3DFF');
     return () => {
       changeThemeColor('#ffffff');
-      titleRef?.current?.classList?.remove('animate-[bounceX_0.250s_ease]');
+      current?.classList?.remove('animate-[bounceX_0.250s_ease]');
     };
   }, []);
 
@@ -54,7 +54,7 @@ const SetupPinPage: FC<IProps> = (props) => {
     if (!pin) setStep(STEP.ONE);
 
     if (pin) setStep(STEP.COMMON);
-  }, [pin]);
+  }, [pin, STEP.ONE, STEP.COMMON]);
 
   const onPressNumber = (num: number) => {
     const current = Date.now();
@@ -194,7 +194,7 @@ const SetupPinPage: FC<IProps> = (props) => {
           <div className="h-10 px-4 text-xs flex items-end justify-center">
             {blockEnterPinTo && (
               <div>
-                You type wrong too many time. Please try again after{' '}
+                {t('pin.lblWrongTooManyTime')}{' '}
                 <CountDown endTime={blockEnterPinTo} onFinished={onCountDownFinished} />
               </div>
             )}
@@ -281,7 +281,7 @@ const SetupPinPage: FC<IProps> = (props) => {
             onClick={onClear}
             className="rounded-lg w-1/3 h-full flex justify-center items-center text-2xl"
           >
-            Clear
+            {t('pin.lblClear')}
           </div>
         </div>
       </div>

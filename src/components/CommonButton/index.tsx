@@ -6,7 +6,7 @@ interface IProps extends AllHTMLAttributes<HTMLButtonElement> {
   type: CommonButtonType;
 }
 
-const CommonButton: FC<IProps> = (props) => {
+const CommonButton: FC<IProps> = ({ type, children, ...props }) => {
   const BTN_BG = {
     [`${CommonButtonType.PRIMARY}`]: 'bg-violet-500',
     [`${CommonButtonType.SECONDARY}`]: 'bg-violet-200',
@@ -19,8 +19,8 @@ const CommonButton: FC<IProps> = (props) => {
     'w-full h-14 rounded-2xl font-semibold flex justify-center items-center text-lg outline-none select-none';
 
   return (
-    <button className={cls(defaultClassName, BTN_BG[props.type], BTN_TEXT_COLOR[props.type])}>
-      {props.children}
+    <button className={cls(defaultClassName, BTN_BG[type], BTN_TEXT_COLOR[type])} {...props}>
+      {children}
     </button>
   );
 };

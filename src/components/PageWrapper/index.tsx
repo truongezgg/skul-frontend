@@ -7,20 +7,20 @@ interface IProps extends AllHTMLAttributes<HTMLDivElement> {
   onClose: () => void;
 }
 
-const PageWrapper: FC<IProps> = (props) => {
+const PageWrapper: FC<IProps> = ({ onClose, title, ...props }) => {
   return (
-    <div className={props.className}>
+    <div {...props}>
       <div className="h-16 flex justify-center items-center py-4">
         <div className="relative h-full w-full">
-          <div className="absolute top-0 left-0" onClick={props.onClose}>
+          <div className="absolute top-0 left-0" onClick={onClose}>
             <ArrowLeft />
           </div>
           <div className="flex justify-center items-center font-semibold text-lg">
-            {cutLongString(props.title, 30)}
+            {cutLongString(title, 30)}
           </div>
         </div>
       </div>
-      <div className="w-full h-full">{props.children}</div>
+      {props.children}
     </div>
   );
 };
