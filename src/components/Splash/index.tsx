@@ -1,20 +1,40 @@
 import Spin from 'assets/svg/Spin';
 import SplashLogo from 'assets/svg/SplashLogo';
+import UnitedKingdomFlag from 'assets/svg/UnitedKingdomFlag';
+import VietNamFlag from 'assets/svg/VietNamFlag';
 import CreditCard from 'components/CreditCard';
 import CreditCardSkeleton from 'components/CreditCard/CreditCardSkeleton';
-import React, { AllHTMLAttributes, FC, useState } from 'react';
+import React, { AllHTMLAttributes, FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { AppState } from 'state';
-// import { useUpdateSync } from 'state/global/hooks';
+import { Language, SyncStatus } from 'types/enum';
+import cls from 'classnames';
+import { changeLanguage } from 'i18next';
 
-interface IProps extends AllHTMLAttributes<HTMLDivElement> {}
+interface IProps extends AllHTMLAttributes<HTMLDivElement> {
+  syncStatus: SyncStatus;
+}
 const Splash: FC<IProps> = (props) => {
-  const { isSync } = useSelector((state: AppState) => state.global);
-  const [isSyncing, setIsSyncing] = useState<boolean>(isSync);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const [isShowAllLanguage, setIsShowAllLanguage] = useState<boolean>(false);
 
-  // const updateSync = useUpdateSync();
+  const languages = [
+    {
+      key: Language.ENGLISH,
+      icon: UnitedKingdomFlag,
+    },
+    {
+      key: Language.VIETNAMESE,
+      icon: VietNamFlag,
+    },
+  ];
+
+  const onChangeLanguage = async (language: Language) => {
+    await changeLanguage(language);
+  };
+
+  const onShowPopupChangeLanguage = (isShow: boolean) => {
+    setIsShowAllLanguage(isShow);
+  };
 
   return (
     <div className="h-full bg-gray-100 select-none relative">
@@ -52,13 +72,13 @@ const Splash: FC<IProps> = (props) => {
             <div className="text-[120px] text-yellow-400">u</div>
             <div className="text-[120px] text-gray-400">l</div>
           </div> */}
-          <div>
-            <SplashLogo />
-            <div onClick={() => setIsSyncing(!isSyncing)} className="text-lg pt-4 text-center">
-              Simple flow of savings!
+          <div className="w-full">
+            <div className="w-full flex justify-center">
+              <SplashLogo />
             </div>
+            <div className="text-lg pt-4 text-center">{t('splash.slogan')}</div>
             <div className="h-8 w-full pt-1">
-              {isSyncing && (
+              {props.syncStatus !== SyncStatus.COMPLETED && (
                 <div className="text-sm h-full animate-pulse rounded-md flex items-center justify-center">
                   <Spin /> <div>{t('splash.syncing')}</div>
                 </div>
@@ -68,6 +88,26 @@ const Splash: FC<IProps> = (props) => {
         </div>
         <div className="absolute bottom-0 left-0 w-full text-center text-violet-400 pb-5">
           @truongezgg
+          <div
+            onClick={() => onShowPopupChangeLanguage(!isShowAllLanguage)}
+            className="absolute right-0 bottom-0 flex justify-center items-center flex-col px-1"
+          >
+            {languages.map((item) => {
+              const isActive = i18n.language === item.key;
+              const isShow = isActive || isShowAllLanguage;
+              const className = cls(!isActive && 'opacity-30');
+
+              return (
+                isShow && (
+                  <div key={item.key} className={className}>
+                    <div onClick={() => onChangeLanguage(item.key)}>
+                      <item.icon />
+                    </div>
+                  </div>
+                )
+              );
+            })}
+          </div>
         </div>
       </div>
       {/* <div className="absolute top-0 left-0 z-1">Hi</div> */}
